@@ -34,24 +34,24 @@ const ProfileModal = ({ user }) => {
         ) : null}
         <ModalDescription className="text-center content-center">
           <Header>
-            <h2 className="text-6xl">{user.name}</h2>
+            <h2 className="md:text-6xl">{user.name}</h2>
           </Header>
 
-          <p className="text-3xl">{user.email}</p>
+          <p className="md:text-3xl">{user.email}</p>
         </ModalDescription>
       </ModalContent>
       <ModalActions>
         <Button color="black" onClick={() => setOpen(false)}>
           cancel
         </Button>
-       
+        {loggedUser.name == user.name ? (
           <Button
             content="Save changes"
             labelPosition="right"
             icon="checkmark"
             onClick={() => setOpen(false)}
             positive
-          />
+          />):null}
         
       </ModalActions>
     </Modal>

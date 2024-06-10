@@ -17,7 +17,7 @@ const MyChats = ({ fetchAgain }) => {
         },
       };
       const { data } = await axios.get(
-        "http://localhost:5000/api/chat",
+        "https://chatappbackend-97qn.onrender.com/api/chat",
         config
       );
       console.log(data);
@@ -40,7 +40,7 @@ const MyChats = ({ fetchAgain }) => {
 
         <div className="flex flex-col h-full">
           {chat ? (
-            <div className="overflow-y-auto h-96">
+            <div className="overflow-y-auto md:h-96">
               {chat.map((chat) => (
                 <div
                   onClick={() => setselectedChat(chat)}
@@ -52,7 +52,7 @@ const MyChats = ({ fetchAgain }) => {
                   }
                   key={chat._id}
                 >
-                  <p className="bg-neutral-800/25 text-white p-3 hover:bg-neutral-800/75">
+                  <p className="chats bg-neutral-800/25 text-white p-1 md:p-3 hover:bg-neutral-800/75">
                     {!chat.isGroupChat
                       ? getSender(loggedUser, chat.users)
                       : chat.chatName}

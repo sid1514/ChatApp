@@ -34,7 +34,7 @@ const Sidedrawer = () => {
         },
       };
       const { data } = await axios.get(
-        `http://localhost:5000/api/user?search=${search}`,
+        `https://chatappbackend-97qn.onrender.com/api/user?search=${search}`,
         config
       );
       setLoading(false);
@@ -57,7 +57,7 @@ const Sidedrawer = () => {
       };
 
       const { data } = await axios.post(
-        "http://localhost:5000/api/chat",
+        "https://chatappbackend-97qn.onrender.com/api/chat",
         { userId },
         config
       );
@@ -76,7 +76,7 @@ const Sidedrawer = () => {
   const getuserPic = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/user/${user._id}/pic`
+        `https://chatappbackend-97qn.onrender.com/api/user/${user._id}/pic`
       );
       console.log(res);
       
@@ -96,19 +96,17 @@ const Sidedrawer = () => {
     <>
       <div className="">
         <div className="m-2 flex flex-row w-full ">
-          <div onClick={() => setClick(!Click)}>
+          <div onClick={() => setClick(!Click)} className="md:w-1/2 h-full">
             <img
               src={userimage}
               alt="user"
-              width={90}
-              height={90}
-              className="rounded-full"
+              className="userImage md:w-1/2 rounded-full "
               style={{ cursor: "pointer" }}
               onClick={() => setClick(!Click)}
             />
           </div>
 
-          <div className="w-1/2 font-bold content-center flex flex-col w-48 rounded-2xl">
+          <div className="profileOption font-bold content-center flex flex-col rounded-2xl">
             <button
               className={`w-full border border-black bg-neutral-600/75 text-white p-2 transition-opacity duration-300 ${
                 Click ? "opacity-100" : "opacity-0"
@@ -134,16 +132,15 @@ const Sidedrawer = () => {
           </div>
         </div>
 
-        <div className=" w-3/2 m-1 mt-5" onClick={() => setShowSearch(true)}>
+        <div className="searchUser w-3/2 m-1 md:mt-5" onClick={() => setShowSearch(true)}>
           <input
             type="search"
-            placeholder="search user"
-            className="border rounded p-2 w-10/12 mr-2"
+            placeholder="search"
+            className="border rounded p-2 w-5/6 md:w-10/12 mr-2"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
           <Icon name="search" size="large" onClick={HandleSearch} />
-          <Icon name="bell" size="large" />
         </div>
         <div className="h-full">
           {showSearch ? (

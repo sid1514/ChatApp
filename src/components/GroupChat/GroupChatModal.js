@@ -36,7 +36,7 @@ const GroupChatModal = () => {
         },
       };
       const { data } = await axios.get(
-        `http://localhost:5000/api/user?search=${search}`,
+        `https://chatappbackend-97qn.onrender.com/api/user?search=${search}`,
         config
       );
       setLoading(false);
@@ -70,7 +70,7 @@ const GroupChatModal = () => {
         },
       };
       const { data } = await axios.post(
-        "http://localhost:5000/api/chat/group",
+        "https://chatappbackend-97qn.onrender.com/api/chat/group",
         {
           name: GrouChatName,
           users: JSON.stringify(selectedUsers.map((u) => u._id)),
@@ -90,11 +90,12 @@ const GroupChatModal = () => {
       onOpen={() => setOpen(true)}
       open={open}
       trigger={
-        <button className="rounded space-x-2 m-4 bg-neutral-600/50 p-2 text-white">
+        <button className="NewGroupBt md:text-2 rounded space-x-2 m-4 bg-green-700/75 p-2 text-white">
           <label className="font-bold text-right">New Group</label>
           <Icon name="add" size="large" color="white" />
         </button>
       }
+      className="createGroup"
     >
       <ModalDescription className="text-center content-center m-5">
         <Header>Create Group Chat</Header>

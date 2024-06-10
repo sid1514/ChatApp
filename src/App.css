@@ -5,3 +5,60 @@
   overflow-y: scroll;
   scrollbar-width: none;
 }
+
+.sideDrawerbutton{
+  display: none;
+}
+
+
+
+
+@media (max-width: 768px) {
+  .searchUser{
+   font-size: x-small;
+  }
+  .sideDrawer{ 
+    display: none;
+     position: fixed;
+  left: 0;
+  width:max-content;
+  }
+.sideDrawerbutton{
+ display: contents;
+  position: fixed;
+  left: 0;
+}
+
+.chats{
+  font-size: x-small;
+  width: 100%;
+  height: max-content;
+}
+.userList{
+   font-size: x-small;
+}
+.messages{
+  width: 90%;
+  height: 95%;
+}
+  .TypeMsg{
+    font-size: x-small;
+  }
+.userImage{
+  width: 200vw;
+}
+.profileOption{
+  font-size: x-small;
+  width: auto;
+}
+  .Messages{
+    font-size: x-small;
+    height: fit-content;
+  }
+
+  .NewGroupBt{
+    width: 55%;
+    font-size:  x-small;
+
+  }
+}

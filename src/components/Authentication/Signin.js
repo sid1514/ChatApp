@@ -9,22 +9,21 @@ const SignIn = () => {
   const [hideFlag, setHideFlage] = useState(false);
   const nav = useNavigate();
   const [ErrorMsg, setErrormessage] = useState(null);
-  const server = process.env.SERVER_URI;
-  console.log(server);
+  
   const handleSignIn = async () => {
     if (!email && !password) {
       setErrormessage("enter field email and password");
       return;
     }
     try {
-      const {data} = await axios.post(
-        `http://localhost:5000/api/user/login`,
+      const { data } = await axios.post(
+        `https://chatappbackend-97qn.onrender.com/api/user/login`,
         {
           email: email,
           password: password,
         }
       );
-      console.log(data);
+      //console.log(data);
       localStorage.setItem("userInfo", JSON.stringify(data));
       nav("/Chatpage");
     } catch (e) {
@@ -35,13 +34,13 @@ const SignIn = () => {
   return (
     <div className=" text-center justify-center p-5 align-center font-bold">
       {ErrorMsg ? <ErrorMessage message={ErrorMsg} /> : null}
-      <div className="flex flex-col gap-4 ">
+      <div className="flex flex-col gap-4 md:text-xl">
         <label>Email Address</label>
         <div>
           <input
             placeholder="enter email "
             type="email"
-            className="border p-3 w-1/2"
+            className="border p-3 md:w-1/2"
             required={true}
             onChange={(e) => setEmail(e.target.value)}
           ></input>
@@ -52,7 +51,7 @@ const SignIn = () => {
           <input
             placeholder="enter password "
             type={!hideFlag ? "password" : "text"}
-            className="border p-3 w-1/2 ml-10"
+            className="border p-3 md:w-1/2 md:ml-10"
             required={true}
             onChange={(e) => setPassword(e.target.value)}
           ></input>
@@ -63,7 +62,7 @@ const SignIn = () => {
       </div>
       <div className="mt-4">
         <button
-          className="py-3 border w-1/4 mt-4 bg-teal-300 shadow-lg"
+          className="py-3 border px-5 md:w-1/4 mt-4 bg-teal-300 shadow-lg"
           onClick={handleSignIn}
         >
           Sign In

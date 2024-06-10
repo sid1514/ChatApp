@@ -40,7 +40,7 @@ const SingleChat = ({ fetchAgain, setfetchAgain }) => {
 
       setLoading(true);
       const { data } = await axios.get(
-        `http://localhost:5000/api/message/${selectedChat._id}`,
+        `https://chatappbackend-97qn.onrender.com/api/message/${selectedChat._id}`,
         config
       );
       setMessages(data);
@@ -64,7 +64,7 @@ const SingleChat = ({ fetchAgain, setfetchAgain }) => {
 
         setNewMessage("");
         const { data } = await axios.post(
-          "http://localhost:5000/api/message",
+          "https://chatappbackend-97qn.onrender.com/api/message",
           { content: newMessage, chatId: selectedChat._id },
           config
         );
@@ -149,7 +149,7 @@ const SingleChat = ({ fetchAgain, setfetchAgain }) => {
                 <ChatLoading/>
                 </div>
             ) : (
-              <div className="messages h-5/6 max-h-96">
+              <div className="messages md:h-5/6 md:max-h-96">
                 <ScrollableChat messages={messages} />
               </div>
             )}
@@ -157,12 +157,12 @@ const SingleChat = ({ fetchAgain, setfetchAgain }) => {
 
               {Istyping ? <div>typing...</div> : null}
             </div>
-            <div className="w-full mt-20" onKeyDown={sendMessage}>
+            <div className="TypeMsg w-full mt-20" onKeyDown={sendMessage}>
               <Input
                 placeholder="type you are messages"
                 type="text"
                 onChange={typingHandler}
-                className="w-11/12 my-1"
+                className="md:w-11/12 my-1"
               />
             </div>
           </div>

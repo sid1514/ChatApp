@@ -4,9 +4,9 @@ import { ChatState } from '../../context/ChatProvider';
 const UserListItem = ({ user,handleFunction }) => {
     
     return (
-      <div onClick={handleFunction} className="flex mb-4 border p-2 shadow-lg space-x-2">
+      <div onClick={handleFunction} className="w-max userList flex md:mb-4 border md:p-2 shadow-lg">
         <div>
-          <img src={user.pic} className="rounded-full" width={40}/>
+          <img src={user.pic} className="rounded-full w-10"/>
         </div>
         <div>
           <div>{user.name}</div>

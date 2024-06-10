@@ -15,19 +15,19 @@ const ScrollableChat = ({ messages }) => {
               <img
                 src={m.sender.pic}
                 alt={m.sender.name}
-                className="w-14 h-14 rounded-full"
+                className="w-10 h-10 md:w-14 md:h-14 rounded-full"
               />
 
               
             )}
             <span
-              className={`w-1/2 m-2 w-fit h-max text-xl ${
+              className={`Messages m-2 w-fit h-max md:text-xl ${
                 m.sender._id === user._id
-                  ? `bg-teal-600 text-white ml-96 `
-                  : `bg-white text-black mr-36`
-              } p-3 rounded text-black`}
+                  ? `bg-teal-600 text-white ml:14 md:ml-96 `
+                  : `bg-white text-black mr:14 md:mr-36`
+              } p-1 md:p-3 rounded text-black`}
             >
-              {m.content}
+            {m.content}
             </span>
           </div>
         ))}

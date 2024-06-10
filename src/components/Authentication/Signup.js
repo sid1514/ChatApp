@@ -27,7 +27,7 @@ const SignUp = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/user/",
+        "https://chatappbackend-97qn.onrender.com/api/user/",
         formData,
         {
           headers: {
@@ -81,7 +81,7 @@ const SignUp = () => {
           <input type="file" onChange={(e) => setProfile(e.target.files[0])} />
         </div>
         <button
-          className="py-3 border w-1/4 mt-4 bg-teal-300 shadow-lg mt-10 font-bold"
+          className="py-3 px-2 border md:w-1/4 mt-4 bg-teal-300 shadow-lg mt-10 font-bold"
           onClick={submitHandler}
         >
           Sign Up
