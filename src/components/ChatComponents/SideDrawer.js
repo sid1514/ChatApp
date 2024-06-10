@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { Button, Dropdown, Icon, Menu, MenuItem } from "semantic-ui-react";
+import { useEffect, useState } from "react";
+import {  Icon } from "semantic-ui-react";
 import { ChatState } from "../../context/ChatProvider";
 import ProfileModal from "./ProfileModal";
 import { useNavigate } from "react-router-dom";
@@ -12,10 +12,11 @@ const Sidedrawer = () => {
   const [loading, setLoading] = useState(false);
   const [loadingChat, setLoadingChat] = useState();
   const nav = useNavigate();
-  const selectRef = useRef(null);
+  
   const [showSearch, setShowSearch] = useState(false);
   const { user, setselectedChat, chat, setChats } = ChatState();
   const [Click, setClick] = useState(false);
+
   const logout = () => {
     localStorage.removeItem("userInfo");
     nav("/");
@@ -70,13 +71,34 @@ const Sidedrawer = () => {
       alert("chat cannot accesible");
     }
   };
+
+  const [userimage, setuserImage] = useState([]);
+  const getuserPic = async () => {
+    try {
+      const res = await axios.get(
+        `http://localhost:5000/api/user/${user._id}/pic`
+      );
+      console.log(res);
+      
+      const imageUrl = URL.createObjectURL(res.data);
+      
+      setuserImage(imageUrl);
+    } catch (error) {
+      console.log(error);
+      setuserImage(user.pic)
+    }
+  };
+
+  useEffect(() => {
+    getuserPic();
+  }, []);
   return (
     <>
       <div className="">
-        <div className="m-2 flex flex-col ">
+        <div className="m-2 flex flex-row w-full ">
           <div onClick={() => setClick(!Click)}>
             <img
-              src={user.pic}
+              src={userimage}
               alt="user"
               width={90}
               height={90}
@@ -86,23 +108,23 @@ const Sidedrawer = () => {
             />
           </div>
 
-          <div className="font-bold fixed top-52 content-center flex flex-col w-48 rounded-2xl">
+          <div className="w-1/2 font-bold content-center flex flex-col w-48 rounded-2xl">
             <button
-              className={`border border-black bg-neutral-600/75 text-white p-2 transition-opacity duration-300 ${
+              className={`w-full border border-black bg-neutral-600/75 text-white p-2 transition-opacity duration-300 ${
                 Click ? "opacity-100" : "opacity-0"
               }`}
             >
               <ProfileModal user={user} />
             </button>
             <button
-              className={`border border-black bg-neutral-600/75 text-white  p-2 transition-opacity duration-300 ${
+              className={`w-full border border-black bg-neutral-600/75 text-white p-2 transition-opacity duration-300 ${
                 Click ? "opacity-100" : "opacity-0"
               }`}
             >
               Setting
             </button>
             <button
-              className={`border border-black bg-neutral-600/75 text-white p-2 transition-opacity duration-800 ${
+              className={`w-full border border-black bg-neutral-600/75 text-white p-2 transition-opacity duration-800 ${
                 Click ? "opacity-100" : "opacity-0"
               }`}
               onClick={logout}
@@ -112,7 +134,7 @@ const Sidedrawer = () => {
           </div>
         </div>
 
-        <div className=" w-3/2 m-1" onClick={() => setShowSearch(true)}>
+        <div className=" w-3/2 m-1 mt-5" onClick={() => setShowSearch(true)}>
           <input
             type="search"
             placeholder="search user"
@@ -141,7 +163,7 @@ const Sidedrawer = () => {
               </div>
             )
           ) : (
-            <div></div>
+           null
           )}
         </div>
       </div>

@@ -5,7 +5,7 @@ const UserBadgeItem = ({ user, handleFunction }) => {
     return (
       <div
         onClick={handleFunction}
-        className="p-2 bg-teal-300 rounded-2xl w-1/4 m-2 text-center text-xl "
+        className="p-2 bg-teal-300 rounded-2xl w-max m-2 text-center text-xl "
       >
         {user.name}
         <Icon name="close" className="p-2 m-2 " onClick={handleFunction} />

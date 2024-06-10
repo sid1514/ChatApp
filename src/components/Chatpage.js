@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import React, {  useState } from "react";
+
 import { ChatState } from "../context/ChatProvider";
 import Sidedrawer from "./ChatComponents/SideDrawer";
 import MyChats from "./ChatComponents/MyChats";
 import ChatBox from "./ChatComponents/ChatBox";
 const ChatPage = () => {
   const { user } = ChatState();
-  const [chats, setChats] = useState([]);
-const [fetchAgain,setfetchAgain]=useState(false)
+  const [fetchAgain, setfetchAgain] = useState(false);
   return (
-    <div className="border shadow-lg bg-white m-10 flex p-10 rounded-2xl w-lvw h-lvh ">
-      <div className="w-1/3 border-r-4 bg-blue-300 rounded p-2 ">
-        <div className=""><h3 className="p-2 font-bold text-3xl blue">Your chats</h3>{user && <Sidedrawer />}</div>
+    <div className="shadow-lg m-10 flex rounded-2xl w-lvw p-2 bg-transparent">
+      <div className="w-1/3 border-r-4 rounded p-3 bg-gradient-to-l from-green-400 to-blue-500 hover:from-green-300 hover:to-blue-600">
+        <div className="">
+          
+          {user && <Sidedrawer />}
+        </div>
         <div>{user && <MyChats fetchAgain={fetchAgain} />}</div>
       </div>
-      <div className="w-full h-full ">
+      <div className="w-full">
         {user && (
           <ChatBox fetchAgain={fetchAgain} setfetchAgain={setfetchAgain} />
         )}

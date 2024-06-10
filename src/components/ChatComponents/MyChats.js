@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ChatState } from "../../context/ChatProvider";
 import axios from "axios";
-import { Icon } from "semantic-ui-react";
+
 import ChatLoading from "./ChatLoading";
 import { getSender } from "../../config/ChatLogics";
 import GroupChatModal from "../GroupChat/GroupChatModal";
@@ -33,29 +33,37 @@ const MyChats = ({ fetchAgain }) => {
   }, [fetchAgain]);
   return (
     <>
-      <div className="w-full">
+      <div className="w-full h-full">
         <div className="text-right">
           <GroupChatModal />
         </div>
 
-        <div className="flex flex-col overflow-y-hidden">
+        <div className="flex flex-col h-full">
           {chat ? (
-            <div className="overflow-y-scroll">
+            <div className="overflow-y-auto h-96">
               {chat.map((chat) => (
                 <div
                   onClick={() => setselectedChat(chat)}
                   cursor="pointer"
                   className={
                     selectedChat === chat
-                      ? "border text-white bg-neutral-800 p-2 rounded"
-                      : "rounded border text-black bg-white p-2 m-2 shadow-lg"
+                      ? " text-white bg-neutral-500 rounded m-2"
+                      : "rounded border text-black m-2 shadow-lg"
                   }
                   key={chat._id}
                 >
-                  <p>
+                  <p className="bg-neutral-800/25 text-white p-3 hover:bg-neutral-800/75">
                     {!chat.isGroupChat
                       ? getSender(loggedUser, chat.users)
                       : chat.chatName}
+                    {chat.latestMessage && (
+                      <p>
+                        <b>{chat.latestMessage.sender.name} : </b>
+                        {chat.latestMessage.content.length > 50
+                          ? chat.latestMessage.content.substring(0, 51) + "..."
+                          : chat.latestMessage.content}
+                      </p>
+                    )}
                   </p>
                 </div>
               ))}
