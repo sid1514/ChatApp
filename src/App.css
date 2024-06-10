@@ -39,10 +39,13 @@
 }
 .messages{
   width: 90%;
-  height: 95%;
+  height: 90%;
 }
   .TypeMsg{
     font-size: x-small;
+    position: fixed;
+    left: 20%;
+    bottom:20%
   }
 .userImage{
   width: 200vw;
