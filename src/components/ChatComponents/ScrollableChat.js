@@ -17,17 +17,15 @@ const ScrollableChat = ({ messages }) => {
                 alt={m.sender.name}
                 className="w-10 h-10 md:w-14 md:h-14 rounded-full"
               />
-
-              
             )}
             <span
-              className={`Messages m-2 w-fit h-max md:text-xl ${
+              className={`Messages p-1 m-2 w-fit h-max md:text-xl ${
                 m.sender._id === user._id
-                  ? `bg-teal-600 text-white ml:14 md:ml-96 `
-                  : `bg-white text-black mr:14 md:mr-36`
+                  ? `marginLeft bg-teal-600 text-white md:ml-96 `
+                  : ` bg-white text-black md:mr-36`
               } p-1 md:p-3 rounded text-black`}
             >
-            {m.content}
+              {m.content}
             </span>
           </div>
         ))}

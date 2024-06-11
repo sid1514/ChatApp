@@ -153,11 +153,11 @@ const SingleChat = ({ fetchAgain, setfetchAgain }) => {
                 <ScrollableChat messages={messages} />
               </div>
             )}
-            <div className="">
+            <div className="absolute bottom-36">
 
               {Istyping ? <div>typing...</div> : null}
             </div>
-            <div className="TypeMsg w-full mt-20" onKeyDown={sendMessage}>
+            <div className="TypeMsg w-full mt-28" onKeyDown={sendMessage}>
               <Input
                 placeholder="type you are messages"
                 type="text"

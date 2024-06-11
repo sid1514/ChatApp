@@ -16,6 +16,7 @@ const Sidedrawer = () => {
   const [showSearch, setShowSearch] = useState(false);
   const { user, setselectedChat, chat, setChats } = ChatState();
   const [Click, setClick] = useState(false);
+  const [userimage, setuserImage] = useState([]);
 
   const logout = () => {
     localStorage.removeItem("userInfo");
@@ -72,7 +73,6 @@ const Sidedrawer = () => {
     }
   };
 
-  const [userimage, setuserImage] = useState([]);
   const getuserPic = async () => {
     try {
       const res = await axios.get(
@@ -91,7 +91,7 @@ const Sidedrawer = () => {
 
   useEffect(() => {
     getuserPic();
-  }, []);
+  }, [user._id]);
   return (
     <>
       <div className="">
