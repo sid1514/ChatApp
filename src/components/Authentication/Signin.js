@@ -9,14 +9,14 @@ const SignIn = () => {
   const [hideFlag, setHideFlage] = useState(false);
   const nav = useNavigate();
   const [ErrorMsg, setErrormessage] = useState(null);
-  const [loading,setLoading]=useState(false)
+  const [loading, setLoading] = useState(false);
   const handleSignIn = async () => {
     if (!email && !password) {
       setErrormessage("enter field email and password");
       return;
     }
     try {
-      setLoading("true")
+      setLoading("true");
       const { data } = await axios.post(
         `https://chatappbackend-97qn.onrender.com/api/user/login`,
         {
@@ -26,9 +26,9 @@ const SignIn = () => {
       );
       //console.log(data);
       localStorage.setItem("userInfo", JSON.stringify(data));
-      
-      nav("/Chatpage");
-      setLoading(false)
+
+      nav("/ChatPage");
+      setLoading(false);
     } catch (e) {
       console.log(e);
       setErrormessage("enter correct email and password");
@@ -37,7 +37,7 @@ const SignIn = () => {
   return (
     <div className=" text-center justify-center p-5 align-center font-bold">
       {ErrorMsg ? <ErrorMessage message={ErrorMsg} /> : null}
-      {loading? <p>SignIn...</p>:null}
+      {loading ? <p>SignIn...</p> : null}
       <div className="flex flex-col gap-4 md:text-xl">
         <label>Email Address</label>
         <div>
