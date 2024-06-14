@@ -75,12 +75,12 @@ const Sidedrawer = () => {
 
   const getuserPic = async () => {
     try {
-      const res = await axios.get(
+      const {data} = await axios.get(
         `https://chatappbackend-97qn.onrender.com/api/user/${user._id}/pic`
       );
-      console.log(res);
+      //console.log(res);
       
-      const imageUrl = URL.createObjectURL(res.data);
+      const imageUrl = URL.createObjectURL(data);
       
       setuserImage(imageUrl);
     } catch (error) {
@@ -91,7 +91,7 @@ const Sidedrawer = () => {
 
   useEffect(() => {
     getuserPic();
-  }, [user._id]);
+  }, []);
   return (
     <>
       <div className="">

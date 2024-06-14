@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ErrorMessage } from "./ErrorMessage";
+import Loading from "../../Loader";
 
 const SignIn = () => {
   const [email, setEmail] = useState();
@@ -37,7 +38,7 @@ const SignIn = () => {
   return (
     <div className=" text-center justify-center p-5 align-center font-bold">
       {ErrorMsg ? <ErrorMessage message={ErrorMsg} /> : null}
-      {loading ? <p>SignIn...</p> : null}
+      {loading ? <Loading/> : null}
       <div className="flex flex-col gap-4 md:text-xl">
         <label>Email Address</label>
         <div>

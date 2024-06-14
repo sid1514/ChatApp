@@ -20,7 +20,7 @@ const MyChats = ({ fetchAgain }) => {
         "https://chatappbackend-97qn.onrender.com/api/chat",
         config
       );
-      console.log(data);
+      //console.log(data);
       setChats(data);
     } catch (error) {
       console.log("unable to fetch Messages");
